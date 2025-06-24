@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "nodenext",
+      "moduleResolution": "nodenext",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "allowImportingTsExtensions": true,
+      "noEmit": true,
+      "strict": true
+    },
+    "lib": ["es2015"]
+  }
