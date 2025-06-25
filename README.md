@@ -11,3 +11,7 @@ Additionally, I have added an "/about" endpoint that returns package name and ve
 ### 1.0.0
 
 Initial endpoint and about endpoint.
+
+### 1.1.0
+
+Adding build, lint & prettier
