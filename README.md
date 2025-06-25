@@ -15,3 +15,7 @@ Initial endpoint and about endpoint.
 ### 1.1.0
 
 Adding build, lint & prettier
+
+### 1.2.0
+
+I want the christmas calculator endpoint to be able to accept an arbitraty date (rather than always today), and default to today only if the path param isn't supplied. Note - Express doesn't handle having the root path have an optional path parameter, so I have split out the default endpoint from the arbitrary date endpoint
