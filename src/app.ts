@@ -12,7 +12,7 @@ const port = 3000
 
 const handleDateRequests = (req: Request, res: Response, date: Date) => {
   const dayCount = daysUntilChristmas(date)
-  console.log(`dayCount: ${dayCount}`)
+  console.log(`${date.toISOString()} - dayCount: ${dayCount}`)
   if (dayCount === 0) {
     res.send('Merry Christmas!')
   } else {
