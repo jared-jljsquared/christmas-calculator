@@ -1,18 +1,23 @@
 import { parse } from 'date-fns'
+import 'dotenv/config'
 import express from 'express'
 import type { Request, Response } from 'express'
 import info from '../package.json' with { type: 'json' }
 import { YYYY_MM_DD } from './constants/date-formats.ts'
+import { log } from './plumbing/logger.ts'
 import { daysUntilChristmas } from './utils/days-until-christmas.ts'
 
 const { name, version } = info
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 const handleDateRequests = (req: Request, res: Response, date: Date) => {
   const dayCount = daysUntilChristmas(date)
-  console.log(`${date.toISOString()} - dayCount: ${dayCount}`)
+  log({
+    message: `${date.toISOString()} - dayCount: ${dayCount}`,
+    today: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+  })
   if (dayCount === 0) {
     res.send('Merry Christmas!')
   } else {
@@ -36,7 +41,11 @@ app.get(
     } catch (e) {
       const errorMessage = `${date} is not an acceptably formated date string`
       res.send(errorMessage)
-      console.warn(errorMessage, e)
+      log({
+        message: errorMessage,
+        error: e as string | object,
+        level: 'warn',
+      })
       return
     }
   },
@@ -50,5 +59,8 @@ app.get('/about', (req, res) => {
 })
 
 app.listen(port, () => {
-  return console.log(`Express service listening at htpp://localhost:${port}`)
+  if (!process.env.PORT) {
+    log('process.env.PORT is undefined - defaulting to 3000')
+  }
+  return log(`Express service listening at htpp://localhost:${port}`)
 })

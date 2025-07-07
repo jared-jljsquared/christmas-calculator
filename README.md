@@ -23,3 +23,11 @@ I want the christmas calculator endpoint to be able to accept an arbitraty date 
 ### 1.2.1
 
 cleaning up the log lines and output
+
+### 1.3.2
+
+Added a log utility to keep the log messages JSON formatting. Also added the fly deploy generated files. This is the command to deploy to fly.io:
+
+```
+flyctl deploy
+```
